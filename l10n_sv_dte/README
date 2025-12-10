@@ -78,14 +78,7 @@ El módulo genera DTEs con la siguiente estructura:
 - [ ] Invalidación y contingencias
 - [ ] API REST para integraciones externas
 
-## 🤝 Contribución
 
-Este es un proyecto demo,
-
-
-## 📄 Licencia
-
-Este proyecto es una **demostración ** 
 
 ⚠️ **Nota importante**: Este código NO incluye implementación real de firma digital ni credenciales. Es una demostración de arquitectura y buenas prácticas.
 
