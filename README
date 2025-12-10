@@ -88,11 +88,11 @@ l10n_sv_dte/
 ┌──────────────────────────────────┐
 │    API Ministerio de Hacienda    │
 └────────────┬─────────────────────┘
-             │ 6) Respuesta (acuse + sello)
+             │ 6) Respuesta (sello)
              ▼
 ┌──────────────────────────────────┐
 │        account.move              │
-│  sello_mh (JWT/acuse)            │
+│  sello_mh (JWT)            │
 │  estado_dte = 'procesado'        │
 │  uuid / numero_control_final     │
 └──────────────────────────────────┘
