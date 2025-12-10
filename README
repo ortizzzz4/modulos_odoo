@@ -1,0 +1,86 @@
+l10n_sv_dte/
+│
+├── 📁 controllers/          # Controladores HTTP (APIs, webhooks)
+│   
+│
+├── 📁 models/              # Modelos de negocio (lógica principal)
+│   ├── __init__.py
+│   ├── account_move.py     # Herencia de facturas (DTE)
+│   
+│
+├── 📁 static/              # Recursos estáticos
+│   ├── description/
+│   │   ├── icon.png        # Icono del módulo (128x128)
+│   │   
+│   ├── src/
+│   │   ├── css/           # Estilos personalizados
+│   │   ├── js/            # JavaScript (widgets, acciones)
+│   │   └── xml/           # Templates QWeb para JS
+│              
+│
+├── 📁 tests/               # Tests unitarios y de integración
+│   ├── __init__.py
+│   ├── account_move_test.py      # Tests de facturación
+│   
+│
+├── 📁 views/               # Vistas XML (interfaz de usuario)
+│   ├── account_move_views.xml    # Formularios de facturas
+│   
+│
+├── 📁 wizards/             # Asistentes (wizards)
+│   ├── __init__.py
+│   
+├── 🐍 __init__.py          # Inicialización del módulo
+├── 📄 __manifest__.py      # Metadatos y dependencias
+├── 📋 LICENSE              # Licencia del software
+└── 📖 README.md            # Documentación principal
+
+🔄 Flujo de Datos
+
+┌─────────────────┐
+│   Usuario Odoo  │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────────────┐
+│  Vista: Factura         │
+│  (account_move_views)   │
+└────────┬────────────────┘
+         │ Click "Firmar DTE"
+         ▼
+┌─────────────────────────┐
+│  Modelo: AccountMove    │
+│  action_firmar_dte()    │
+└────────┬────────────────┘
+         │
+         ├──► _preparar_payload_dte()
+         │    ├─ _preparar_items()
+         │    ├─ _preparar_receptor()
+         │    ├─ _preparar_emisor()
+         │    └─ _preparar_resumen()
+         │
+         ▼
+┌─────────────────────────┐
+│  Servicio Firmador      │
+│  (API Externa)          │
+└────────┬────────────────┘
+         │ Documento Firmado
+         ▼
+┌─────────────────────────┐
+│  Modelo: AccountMove    │
+│  documento_firmado      │
+│  estado_dte = 'firmado' │
+└────────┬────────────────┘
+         │ Click "Enviar a MH"
+         ▼
+┌─────────────────────────┐
+│  Ministerio Hacienda    │
+│  (API MH)               │
+└────────┬────────────────┘
+         │ Respuesta + Sello
+         ▼
+┌─────────────────────────┐
+│  Modelo: AccountMove    │
+│  confirmacion (sello)   │
+│  estado_dte='procesado' │
+└─────────────────────────┘
