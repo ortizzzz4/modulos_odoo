@@ -1,0 +1,108 @@
+# 📄 Sistema de Facturación Electrónica - El Salvador
+
+> Módulo demo que demuestra integración con el sistema de facturación electrónica del Ministerio de Hacienda de El Salvador
+
+## 🎯 Descripción
+
+Este proyecto es una **demostración profesional** de mis habilidades desarrollando módulos de Odoo para facturación electrónica. 
+Basado en experiencia real  el sistema de DTE (Documento Tributario Electrónico) de El Salvador. 
+Entre otros desarrollos.
+
+### Características Principales
+
+- ✅ Generación de DTE según especificaciones del MH de El Salvador
+- ✅ Integración con servicio de firma digital
+- ✅ Envío y recepción de respuestas del Ministerio de Hacienda
+- ✅ Manejo de ambientes (pruebas/producción)
+- ✅ Validaciones y control de estados del documento
+- ✅ Manejo robusto de errores y excepciones
+
+
+## 📊 Arquitectura
+
+```
+┌─────────────┐
+│   Odoo UI   │
+└──────┬──────┘
+       │
+       ▼
+┌─────────────────────┐
+│  AccountMove        │
+│  (Heredado)         │
+│                     │
+│ ┌─────────────────┐ │
+│ │ _preparar_*()   │ │  ← Métodos privados
+│ │ action_*()      │ │  ← Acciones públicas
+│ └─────────────────┘ │
+└──────┬──────────────┘
+       │
+       ├─────────────────┐
+       ▼                 ▼
+┌──────────────┐  ┌──────────────┐
+│  Firmador    │  │      MH      │
+│   Digital    │  │  (Hacienda)  │
+└──────────────┘  └──────────────┘
+```
+
+
+## 📝 Estructura del DTE
+
+El módulo genera DTEs con la siguiente estructura:
+
+```json
+{
+  "identificacion": {
+    "version": 1,
+    "ambiente": "00",
+    "tipoDte": "01",
+    "numeroControl": "FAC-001",
+    "codigoGeneracion": "UUID",
+    "tipoModelo": 1,
+    "tipoOperacion": 1,
+    "fecEmi": "2024-01-15",
+    "horEmi": "10:30:00"
+  },
+  "emisor": { /* ... */ },
+  "receptor": { /* ... */ },
+  "cuerpoDocumento": [ /* items */ ],
+  "resumen": { /* totales */ },
+  "extension": { /* datos adicionales */ }
+}
+```
+
+
+## 📈 
+
+- [ ] Soporte para más tipos de DTE (CCF, exportaciones)
+- [ ] Generación de reportes PDF con código QR
+- [ ] Invalidación y contingencias
+- [ ] API REST para integraciones externas
+
+## 🤝 Contribución
+
+Este es un proyecto demo,
+
+
+## 📄 Licencia
+
+Este proyecto es una **demostración ** 
+
+⚠️ **Nota importante**: Este código NO incluye implementación real de firma digital ni credenciales. Es una demostración de arquitectura y buenas prácticas.
+
+## 👨‍💻 Autor
+
+**Luis Ortiz**
+- Email: luis.ortiz.7948@gmail.com
+- LinkedIn: [luis hernandez](https://linkedin.com/in/luis-hernandez-3841681bb)
+- GitHub: [@ortizzzz4](https://github.com/ortizzzz4)
+
+---
+
+## 💼 Experiencia Relacionada
+
+
+- ✅ Facturación desde POS y módulo de contabilidad
+- ✅ Integración con APIs del Ministerio de Hacienda
+- ✅ Reportes personalizados de auditoría fiscal
+- ✅ Sincronización con sistemas contables externos
+
